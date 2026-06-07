@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a44acc63-2f3b-4505-9845-6b087ded1508" name="Changes" comment="feat: implement complete Alien Invasion game with menus, levels, and score tracking&#10;&#10;- Add main game loop and window management&#10;- Implement player movement and shooting mechanics&#10;- Add enemy spawning and AI shooting behavior&#10;- Create scrolling background system for two levels&#10;- Add collision detection and entity health management&#10;- Implement game modes: 1P, 2P cooperative, and 2P competitive&#10;- Add menu system with music and visual assets&#10;- Implement score tracking with SQLite database storage&#10;- Add background music and sound effects&#10;- Include all game assets (sprites, backgrounds, audio files)&#10;- Add IDE configuration files for PyCharm">
+    <list default="true" id="a44acc63-2f3b-4505-9845-6b087ded1508" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/Const.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Const.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Enemy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/EntityFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/EntityFactory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Level.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Player.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,26 +17,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="51" />
+    <option name="cachedIndexableFilesCount" value="52" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Andrey479"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Andrey479&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Andrey479/AlienInvasion.git",
-    "accountId": "8aff7d41-cdc6-4b4c-8059-d03035c0c27e"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Andrey479/AlienInvasion.git&quot;,
+    &quot;accountId&quot;: &quot;8aff7d41-cdc6-4b4c-8059-d03035c0c27e&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3,
@@ -59,6 +64,7 @@
     "git-widget-placeholder": "master",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "/home/andrey/Desktop/Andrey/analise-e-desenvolvimento-de-sistemas/terceiro-semestre/linguagem-de-programação-aplicada/AlienInvasion",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable",
     "to.speed.mode.migration.done": "true"
   }
@@ -123,10 +129,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: implement complete Alien Invasion game with menus, levels, and score tracking&#10;&#10;- Add main game loop and window management&#10;- Implement player movement and shooting mechanics&#10;- Add enemy spawning and AI shooting behavior&#10;- Create scrolling background system for two levels&#10;- Add collision detection and entity health management&#10;- Implement game modes: 1P, 2P cooperative, and 2P competitive&#10;- Add menu system with music and visual assets&#10;- Implement score tracking with SQLite database storage&#10;- Add background music and sound effects&#10;- Include all game assets (sprites, backgrounds, audio files)&#10;- Add IDE configuration files for PyCharm" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: implement complete Alien Invasion game with menus, levels, and score tracking&#10;&#10;- Add main game loop and window management&#10;- Implement player movement and shooting mechanics&#10;- Add enemy spawning and AI shooting behavior&#10;- Create scrolling background system for two levels&#10;- Add collision detection and entity health management&#10;- Implement game modes: 1P, 2P cooperative, and 2P competitive&#10;- Add menu system with music and visual assets&#10;- Implement score tracking with SQLite database storage&#10;- Add background music and sound effects&#10;- Include all game assets (sprites, backgrounds, audio files)&#10;- Add IDE configuration files for PyCharm" />
+    <MESSAGE value="fix: add gravity and jump mechanics for platform-style movement&#10;&#10;- Add GRAVITY_VALUE constant for vertical acceleration&#10;- Implement vertical velocity and ground state tracking in Player class&#10;- Replace UP/DOWN movement with jump mechanic using SPACE key&#10;- Apply gravity when player is not on ground&#10;- Set initial jump velocity to -17 for upward motion&#10;- Reset vertical velocity and ground state when landing&#10;- Remove deprecated UP and DOWN key movement bindings" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: add gravity and jump mechanics for platform-style movement&#10;&#10;- Add GRAVITY_VALUE constant for vertical acceleration&#10;- Implement vertical velocity and ground state tracking in Player class&#10;- Replace UP/DOWN movement with jump mechanic using SPACE key&#10;- Apply gravity when player is not on ground&#10;- Set initial jump velocity to -17 for upward motion&#10;- Reset vertical velocity and ground state when landing&#10;- Remove deprecated UP and DOWN key movement bindings" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AlienInvasion$Player.coverage" NAME="Player Coverage Results" MODIFIED="1780779871792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />
-    <SUITE FILE_PATH="coverage/AlienInvasion$main.coverage" NAME="main Coverage Results" MODIFIED="1780781724389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/AlienInvasion$main.coverage" NAME="main Coverage Results" MODIFIED="1780860940913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -27,10 +27,12 @@ class Level:
         player = EntityFactory.get_entity('Player1')
         player.score = player_score[0]
         self.entity_list.append(player)
+
         if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
             player = EntityFactory.get_entity('Player2')
             player.score = player_score[1]
             self.entity_list.append(player)
+
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 100ms
 
@@ -41,26 +43,44 @@ class Level:
         clock = pygame.time.Clock()
         while True:
             clock.tick(60)
+            player_pos = None
+
+            # serve para passar para o enemy depois
+            for ent in self.entity_list:
+                if isinstance(ent, Player):
+                    player_pos = ent.rect
+
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
-                ent.move()
+
+                if isinstance(ent, Enemy):
+                    ent.move(player_pos)
+
+                if isinstance(ent, Player):
+                    ent.move()
+
                 if isinstance(ent, (Player, Enemy)):
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+
                 if ent.name == 'Player1':
                     self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 25))
                 if ent.name == 'Player2':
                     self.level_text(14, f'Player2 - Health: {ent.health} | Score: {ent.score}', C_CYAN, (10, 45))
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
+
                     if self.timeout == 0:
                         for ent in self.entity_list:
                             if isinstance(ent, Player) and ent.name == 'Player1':
