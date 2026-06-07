@@ -109,6 +109,9 @@ ENTITY_SHOT_DELAY = {
     'Enemy2': 200,
 }
 
+# G
+GRAVITY_VALUE = 1
+
 # M
 MENU_OPTION = ('NEW GAME 1P',
                'NEW GAME 2P - COOPERATIVE',
@@ -127,6 +130,9 @@ PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
                     'Player2': pygame.K_d}
 PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
+
+PLAYER_KEY_JUMP = pygame.K_SPACE
+
 
 # S
 SPAWN_TIME = 4000
