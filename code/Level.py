@@ -55,14 +55,18 @@ class Level:
 
                 if isinstance(ent, Enemy):
                     ent.move(player_pos)
-
-                if isinstance(ent, Player):
+                else:
                     ent.move()
 
-                if isinstance(ent, (Player, Enemy)):
+                if isinstance(ent, Enemy):
+                    shoot = ent.shoot(player_pos)
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
+                elif isinstance(ent, Player):
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+
 
                 if ent.name == 'Player1':
                     self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 25))

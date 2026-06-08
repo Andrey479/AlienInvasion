@@ -19,8 +19,8 @@ class Enemy(Entity):
             else:
                 self.rect.centerx -= ENTITY_SPEED[self.name]
 
-    def shoot(self):
+    def shoot(self, player_position: pygame.Rect = None):
         self.shot_delay -= 1
         if self.shot_delay == 0:
             self.shot_delay = ENTITY_SHOT_DELAY[self.name]
-            return EnemyShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))
+            return EnemyShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery), player_pos=player_position)
