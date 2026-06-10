@@ -24,7 +24,7 @@ ENTITY_SPEED = {
     'Level2Bg3': 3,
     'Level2Bg4': 4,
     'Player1': 3,
-    'Player1Shot': 1,
+    'Player1Shot': 5,
     'Player2': 3,
     'Player2Shot': 3,
     'Enemy1': 1,
@@ -74,7 +74,7 @@ ENTITY_DAMAGE = {
     'Player2': 1,
     'Player2Shot': 20,
     'Enemy1': 1,
-    'Enemy1Shot': 20,
+    'Enemy1Shot': 5,
     'Enemy2': 1,
     'Enemy2Shot': 15,
 }
@@ -105,8 +105,8 @@ ENTITY_SCORE = {
 ENTITY_SHOT_DELAY = {
     'Player1': 10,
     'Player2': 15,
-    'Enemy1': 20,
-    'Enemy2': 15,
+    'Enemy1': 100,
+    'Enemy2': 100,
 }
 
 # G
@@ -120,14 +120,11 @@ MENU_OPTION = ('NEW GAME 1P',
                'EXIT')
 
 # P
-PLAYER_KEY_LEFT = {'Player1': pygame.K_LEFT,
-                   'Player2': pygame.K_a}
-PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
-                    'Player2': pygame.K_d}
-PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
-                    'Player2': pygame.K_LCTRL}
+PLAYER_KEY_LEFT = {'Player1': pygame.K_a}
+PLAYER_KEY_RIGHT = {'Player1': pygame.K_d}
+PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL}
 
-PLAYER_KEY_JUMP = pygame.K_SPACE
+PLAYER_KEY_JUMP = pygame.K_w
 
 
 # S
