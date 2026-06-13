@@ -3,7 +3,7 @@
 import pygame.key
 
 from code.Const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH, PLAYER_KEY_LEFT, \
-    PLAYER_KEY_RIGHT, PLAYER_KEY_SHOOT, PLAYER_KEY_JUMP, ENTITY_SHOT_DELAY, GRAVITY_VALUE
+    PLAYER_KEY_RIGHT, PLAYER_KEY_JUMP, ENTITY_SHOT_DELAY, GRAVITY_VALUE
 from code.Entity import Entity
 from code.PlayerShot import PlayerShot
 

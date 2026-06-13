@@ -2,7 +2,7 @@ import pygame
 from pygame import Surface, Rect, KEYDOWN, K_ESCAPE, K_RETURN
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_ORANGE, C_WHITE, C_YELLOW
+from code.Const import WIN_WIDTH, C_ORANGE, C_WHITE
 
 
 class DeathScreen:
