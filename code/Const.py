@@ -24,13 +24,13 @@ ENTITY_SPEED = {
     'Level2Bg3': 3,
     'Level2Bg4': 4,
     'Player1': 3,
-    'Player1Shot': 5,
+    'Player1Shot': 7,
     'Player2': 3,
     'Player2Shot': 3,
     'Enemy1': 1,
     'Enemy1Shot': 5,
     'Enemy2': 1,
-    'Enemy2Shot': 2,
+    'Enemy2Shot': 3,
     'Enemy3': 2,
     'Enemy3Shot': 4,
 }
@@ -82,7 +82,7 @@ ENTITY_DAMAGE = {
     'Enemy2': 1,
     'Enemy2Shot': 15,
     'Enemy3': 3,
-    'Enemy3Shot': 25,
+    'Enemy3Shot': 20,
 }
 
 ENTITY_SCORE = {
@@ -111,7 +111,7 @@ ENTITY_SCORE = {
 }
 
 ENTITY_SHOT_DELAY = {
-    'Player1': 10,
+    'Player1': 5,
     'Player2': 15,
     'Enemy1': 100,
     'Enemy2': 100,
@@ -131,13 +131,13 @@ MENU_OPTION = ('NEW GAME 1P',
 # P
 PLAYER_KEY_LEFT = {'Player1': pygame.K_a}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_d}
-PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL}
+PLAYER_KEY_SHOOT = {'Player1': 0}  # Left mouse button
 
 PLAYER_KEY_JUMP = pygame.K_w
 
 
 # S
-SPAWN_TIME = 4000
+SPAWN_TIME = 3000
 
 # T
 TIMEOUT_STEP = 100  # 100ms

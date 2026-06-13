@@ -81,14 +81,12 @@ class Level:
                     sys.exit()
 
                 if event.type == EVENT_ENEMY:
-                    if self.dead_enemies == 10 and self.boss_spawned == 0:
+                    if self.dead_enemies >= 10 and self.boss_spawned == 0:
                         self.entity_list.append(EntityFactory.get_entity('Enemy3'))
                         self.boss_spawned = 1
-                    else:
+                    elif self.boss_spawned == 0:
                         choice = random.choice(('Enemy1', 'Enemy2'))
                         self.entity_list.append(EntityFactory.get_entity(choice))
-
-
 
                 found_player = False
                 for ent in self.entity_list:
