@@ -30,7 +30,7 @@ class EntityMediator:
         elif isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
             valid_interaction = True
 
-        if valid_interaction:  # if valid_interaction == True:
+        if valid_interaction:
             if (ent1.rect.right >= ent2.rect.left and
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
@@ -62,8 +62,11 @@ class EntityMediator:
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
+        dead_enemies = 0
         for ent in entity_list:
             if ent.health <= 0:
                 if isinstance(ent, Enemy):
                     EntityMediator.__give_score(ent, entity_list)
+                    dead_enemies += 1
                 entity_list.remove(ent)
+        return dead_enemies

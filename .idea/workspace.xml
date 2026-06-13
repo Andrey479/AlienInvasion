@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a44acc63-2f3b-4505-9845-6b087ded1508" name="Changes" comment="">
+    <list default="true" id="a44acc63-2f3b-4505-9845-6b087ded1508" name="Changes" comment="refactor: convert to mouse-aim shooting system and improve projectile physics&#10;&#10;- Change player shooting from keyboard to mouse click detection (left mouse button)&#10;- Implement mouse-aim projectile system with vector-based trajectory calculation&#10;- Increase Player1Shot speed from 1 to 5 for faster bullets&#10;- Reduce Enemy1Shot damage from 20 to 5 for better game balance&#10;- Restore enemy shot delays to 100ms for more predictable combat&#10;- Change player jump key from SPACE to W key&#10;- Simplify player movement to A/D keys only (removing right-side bindings)&#10;- Fix enemy spawn positioning: Enemy1 spawns at random vertical position (10 to half screen)&#10;- Improve off-screen cleanup for all projectiles (top, bottom, left, right boundaries)&#10;- Remove player keyboard shooting bindings (RCTRL/LCTRL)">
+      <change afterPath="$PROJECT_DIR$/asset/Enemy3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/Enemy3Shot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/Const.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Const.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/EntityFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/EntityFactory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/EntityMediator.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/EntityMediator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Level.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/PlayerShot.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/PlayerShot.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,27 +60,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.Player.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/andrey/Desktop/Andrey/analise-e-desenvolvimento-de-sistemas/terceiro-semestre/linguagem-de-programação-aplicada/AlienInvasion&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.AcpAgentsConfigurable&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.Player.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/andrey/Desktop/Andrey/analise-e-desenvolvimento-de-sistemas/terceiro-semestre/linguagem-de-programação-aplicada/AlienInvasion/asset",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -141,7 +144,8 @@
     <MESSAGE value="feat: implement enemy AI tracking and platform collision for sidescroller&#10;&#10;- Add enemy AI that tracks player's horizontal position (moves toward player)&#10;- Modify Enemy.move() to accept player position parameter and follow player&#10;- Remove random vertical spawn, position enemies at ground level (bottom of screen)&#10;- Set enemy spawn at WIN_HEIGHT ground level for platform-based gameplay&#10;- Remove deprecated PLAYER_KEY_UP and PLAYER_KEY_DOWN constants&#10;- Update Level class to pass player position to enemy movement&#10;- Improve entity iteration order for proper collision detection" />
     <MESSAGE value="feat: add death screen and reduce player health for increased difficulty&#10;&#10;- Add DeathScreen class displayed when player dies during gameplay&#10;- Implement death screen with &quot;YOU DIED&quot; message and ESC to return to menu&#10;- Load ScoreBg.png as death screen background with menu music&#10;- Reduce Player1 health from 300 to 20 for more challenging gameplay&#10;- Integrate death screen flow in Game loop when level returns False&#10;- Allow returning to main menu via ESC or ENTER key from death screen" />
     <MESSAGE value="refactor: improve game balance and implement homing enemy projectiles&#10;&#10;- Adjust player health from 20 to 50 for better survivability&#10;- Increase enemy health (Enemy1: 50→100, Enemy2: 60→150) for higher difficulty&#10;- Reduce enemy shot delay significantly (Enemy1: 100→20, Enemy2: 200→15) for aggressive AI&#10;- Reduce player shot delay from 20 to 10 for faster firing rate&#10;- Implement homing projectile system for enemy shots targeting player position&#10;- Add vector-based movement calculation using hypotenuse for accurate trajectory&#10;- Fix Player1 spawn positioning to ground level (bottom of screen)&#10;- Modify Enemy.shoot() to accept player position parameter for homing shots&#10;- Update Level class to pass player position to enemy shooting mechanism" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: improve game balance and implement homing enemy projectiles&#10;&#10;- Adjust player health from 20 to 50 for better survivability&#10;- Increase enemy health (Enemy1: 50→100, Enemy2: 60→150) for higher difficulty&#10;- Reduce enemy shot delay significantly (Enemy1: 100→20, Enemy2: 200→15) for aggressive AI&#10;- Reduce player shot delay from 20 to 10 for faster firing rate&#10;- Implement homing projectile system for enemy shots targeting player position&#10;- Add vector-based movement calculation using hypotenuse for accurate trajectory&#10;- Fix Player1 spawn positioning to ground level (bottom of screen)&#10;- Modify Enemy.shoot() to accept player position parameter for homing shots&#10;- Update Level class to pass player position to enemy shooting mechanism" />
+    <MESSAGE value="refactor: convert to mouse-aim shooting system and improve projectile physics&#10;&#10;- Change player shooting from keyboard to mouse click detection (left mouse button)&#10;- Implement mouse-aim projectile system with vector-based trajectory calculation&#10;- Increase Player1Shot speed from 1 to 5 for faster bullets&#10;- Reduce Enemy1Shot damage from 20 to 5 for better game balance&#10;- Restore enemy shot delays to 100ms for more predictable combat&#10;- Change player jump key from SPACE to W key&#10;- Simplify player movement to A/D keys only (removing right-side bindings)&#10;- Fix enemy spawn positioning: Enemy1 spawns at random vertical position (10 to half screen)&#10;- Improve off-screen cleanup for all projectiles (top, bottom, left, right boundaries)&#10;- Remove player keyboard shooting bindings (RCTRL/LCTRL)" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: convert to mouse-aim shooting system and improve projectile physics&#10;&#10;- Change player shooting from keyboard to mouse click detection (left mouse button)&#10;- Implement mouse-aim projectile system with vector-based trajectory calculation&#10;- Increase Player1Shot speed from 1 to 5 for faster bullets&#10;- Reduce Enemy1Shot damage from 20 to 5 for better game balance&#10;- Restore enemy shot delays to 100ms for more predictable combat&#10;- Change player jump key from SPACE to W key&#10;- Simplify player movement to A/D keys only (removing right-side bindings)&#10;- Fix enemy spawn positioning: Enemy1 spawns at random vertical position (10 to half screen)&#10;- Improve off-screen cleanup for all projectiles (top, bottom, left, right boundaries)&#10;- Remove player keyboard shooting bindings (RCTRL/LCTRL)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AlienInvasion$Player.coverage" NAME="Player Coverage Results" MODIFIED="1780779871792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />

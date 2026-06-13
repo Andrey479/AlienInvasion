@@ -27,6 +27,8 @@ class Level:
         player = EntityFactory.get_entity('Player1')
         player.score = player_score[0]
         self.entity_list.append(player)
+        self.dead_enemies = 0
+        self.boss_spawned = 0
 
         if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
             player = EntityFactory.get_entity('Player2')
@@ -79,19 +81,14 @@ class Level:
                     sys.exit()
 
                 if event.type == EVENT_ENEMY:
-                    choice = random.choice(('Enemy1', 'Enemy2'))
-                    self.entity_list.append(EntityFactory.get_entity(choice))
+                    if self.dead_enemies == 10 and self.boss_spawned == 0:
+                        self.entity_list.append(EntityFactory.get_entity('Enemy3'))
+                        self.boss_spawned = 1
+                    else:
+                        choice = random.choice(('Enemy1', 'Enemy2'))
+                        self.entity_list.append(EntityFactory.get_entity(choice))
 
-                if event.type == EVENT_TIMEOUT:
-                    self.timeout -= TIMEOUT_STEP
 
-                    if self.timeout == 0:
-                        for ent in self.entity_list:
-                            if isinstance(ent, Player) and ent.name == 'Player1':
-                                player_score[0] = ent.score
-                            if isinstance(ent, Player) and ent.name == 'Player2':
-                                player_score[1] = ent.score
-                        return True
 
                 found_player = False
                 for ent in self.entity_list:
@@ -103,12 +100,22 @@ class Level:
 
             # printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))
+            self.level_text(14, f'Inimigos mortos: {self.dead_enemies} / 50', C_WHITE, (10, 65))
             self.level_text(14, f'fps: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
             # Collisions
             EntityMediator.verify_collision(entity_list=self.entity_list)
-            EntityMediator.verify_health(entity_list=self.entity_list)
+            self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
+
+            # condição de vitória: matar pelo menos 50 inimigos 
+            if self.dead_enemies >= 20:
+                for ent in self.entity_list:
+                    if isinstance(ent, Player) and ent.name == 'Player1':
+                        player_score[0] = ent.score
+                    if isinstance(ent, Player) and ent.name == 'Player2':
+                        player_score[1] = ent.score
+                return True
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)

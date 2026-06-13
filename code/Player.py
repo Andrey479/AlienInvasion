@@ -26,7 +26,6 @@ class Player(Entity):
             self.vertical_velocity += GRAVITY_VALUE
             self.rect.centery += self.vertical_velocity
 
-        #
         if pressed_key[PLAYER_KEY_JUMP] and self.on_ground:
             self.vertical_velocity = -17
             self.on_ground = False

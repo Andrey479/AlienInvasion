@@ -38,3 +38,6 @@ class EntityFactory:
                 enemy = Enemy('Enemy2', (WIN_WIDTH + 10, 0))
                 enemy.rect.bottom = WIN_HEIGHT
                 return enemy
+            case 'Enemy3':
+                return Enemy('Enemy3', (WIN_WIDTH + 10, random.randint(10, WIN_HEIGHT // 2)))
+            
