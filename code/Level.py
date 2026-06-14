@@ -38,7 +38,6 @@ class Level:
             clock.tick(60)
             player_pos = None
 
-            # serve para passar para o enemy depois
             for ent in self.entity_list:
                 if isinstance(ent, Player):
                     player_pos = ent.rect
@@ -82,21 +81,18 @@ class Level:
                 if not found_player:
                     return False
 
-            # printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))
             self.level_text(14, f'Inimigos mortos: {self.dead_enemies} / 50', C_WHITE, (10, 65))
             self.level_text(14, f'fps: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
 
-            # Collisions
             EntityMediator.verify_collision(entity_list=self.entity_list)
             self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
             if self.dead_enemies >= 20 and self.boss_spawned == 0:
                 self.entity_list.append(EntityFactory.get_entity('Enemy3'))
                 self.boss_spawned = 1
 
-            # condição de vitória: matar pelo menos 20 inimigos
             if self.dead_enemies >= 20 and self.boss_spawned == 1 and not any(e.name == 'Enemy3' for e in self.entity_list):
                 for ent in self.entity_list:
                     if isinstance(ent, Player) and ent.name == 'Player1':

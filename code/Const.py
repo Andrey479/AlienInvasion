@@ -1,4 +1,3 @@
-# C
 import pygame
 
 C_ORANGE = (255, 128, 0)
@@ -7,7 +6,6 @@ C_WHITE = (255, 255, 255)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
 
-# E
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 ENTITY_SPEED = {
@@ -106,33 +104,27 @@ ENTITY_SHOT_DELAY = {
     'Enemy3': 60,
 }
 
-# G
 GRAVITY_VALUE = 1
 
-# M
+MENU_FONT = './asset/PressStart2P-Regular.ttf'
+
 MENU_OPTION = ('NEW GAME 1P',
                'SCORE',
                'EXIT')
 
-# P
 PLAYER_KEY_LEFT = {'Player1': pygame.K_a}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_d}
 PLAYER_KEY_SHOOT = {'Player1': 0}  # Left mouse button
 
 PLAYER_KEY_JUMP = pygame.K_w
 
-
-# S
 SPAWN_TIME = 3000
 
-# T
-TIMEOUT_STEP = 100  # 100ms
-TIMEOUT_LEVEL = 20000  # 20s
-# W
+TIMEOUT_STEP = 100
+TIMEOUT_LEVEL = 20000
 WIN_WIDTH = 960
 WIN_HEIGHT = 540
 
-# S
 SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              'EnterName': (WIN_WIDTH / 2, 80),
              'Label': (WIN_WIDTH / 2, 90),
