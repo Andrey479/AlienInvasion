@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a44acc63-2f3b-4505-9845-6b087ded1508" name="Changes" comment="feat: balance gameplay and add control instructions to menu&#10;&#10;- Increase player fire rate (shot delay 10→5, speed 5→7)&#10;- Reduce boss damage (25→20) and enemy spawn time (4s→3s)&#10;- Fix boss spawn to trigger after 10 kills&#10;- Add control instructions panel to menu screen&#10;- Rename menu title to &quot;Alien Invasion&quot;">
+    <list default="true" id="a44acc63-2f3b-4505-9845-6b087ded1508" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg0.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/Level1Bg0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg1.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/Level1Bg1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg2.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/Level1Bg2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg3.png" beforeDir="false" afterPath="$PROJECT_DIR$/asset/Level1Bg3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/Level1Bg6.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/code/Background.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Background.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/Const.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Const.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/DeathScreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/DeathScreen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Enemy.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Enemy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Entity.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Entity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/EntityFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/EntityFactory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Level.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Level.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/Player.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Player.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/Score.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/Score.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +23,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="55" />
+    <option name="cachedIndexableFilesCount" value="52" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -152,7 +150,8 @@
     <MESSAGE value="refactor: convert to mouse-aim shooting system and improve projectile physics&#10;&#10;- Change player shooting from keyboard to mouse click detection (left mouse button)&#10;- Implement mouse-aim projectile system with vector-based trajectory calculation&#10;- Increase Player1Shot speed from 1 to 5 for faster bullets&#10;- Reduce Enemy1Shot damage from 20 to 5 for better game balance&#10;- Restore enemy shot delays to 100ms for more predictable combat&#10;- Change player jump key from SPACE to W key&#10;- Simplify player movement to A/D keys only (removing right-side bindings)&#10;- Fix enemy spawn positioning: Enemy1 spawns at random vertical position (10 to half screen)&#10;- Improve off-screen cleanup for all projectiles (top, bottom, left, right boundaries)&#10;- Remove player keyboard shooting bindings (RCTRL/LCTRL)" />
     <MESSAGE value="feat: add boss enemy (Enemy3) and wave-based victory condition&#10;&#10;- Add new Enemy3 type with 600 health, 500 score value, and 60 shot delay&#10;- Implement Enemy3 spawning after killing 10 enemies (mini-boss encounter)&#10;- Add Enemy3Shot projectile with 4 speed and 25 damage&#10;- Replace timeout-based level progression with kill-based victory condition&#10;- Require 20 enemy kills to complete the level&#10;- Display kill counter (Inimigos mortos: X / 20) on screen&#10;- Return dead enemy count from EntityMediator.verify_health()&#10;- Track dead enemies and boss spawn state in Level class&#10;- Remove timer-based level completion logic (EVENT_TIMEOUT)&#10;- Configure Enemy3 spawn position at random vertical position (10 to half screen)&#10;- Set Enemy3 movement speed to 2 and collision damage to 3" />
     <MESSAGE value="feat: balance gameplay and add control instructions to menu&#10;&#10;- Increase player fire rate (shot delay 10→5, speed 5→7)&#10;- Reduce boss damage (25→20) and enemy spawn time (4s→3s)&#10;- Fix boss spawn to trigger after 10 kills&#10;- Add control instructions panel to menu screen&#10;- Rename menu title to &quot;Alien Invasion&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: balance gameplay and add control instructions to menu&#10;&#10;- Increase player fire rate (shot delay 10→5, speed 5→7)&#10;- Reduce boss damage (25→20) and enemy spawn time (4s→3s)&#10;- Fix boss spawn to trigger after 10 kills&#10;- Add control instructions panel to menu screen&#10;- Rename menu title to &quot;Alien Invasion&quot;" />
+    <MESSAGE value="refactor: optimize background layers and increase resolution&#10;&#10;- Reduce Level1 background layers from 7 to 4&#10;- Remove unused Level1Bg4, Level1Bg5, Level1Bg6 assets&#10;- Scale backgrounds to fit new resolution (960x540)&#10;- Update EntityFactory to spawn only 4 background layers&#10;- Remove related constants from Const.py&#10;- Clean up unused import in DeathScreen" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: optimize background layers and increase resolution&#10;&#10;- Reduce Level1 background layers from 7 to 4&#10;- Remove unused Level1Bg4, Level1Bg5, Level1Bg6 assets&#10;- Scale backgrounds to fit new resolution (960x540)&#10;- Update EntityFactory to spawn only 4 background layers&#10;- Remove related constants from Const.py&#10;- Clean up unused import in DeathScreen" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AlienInvasion$Player.coverage" NAME="Player Coverage Results" MODIFIED="1780779871792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/code" />

@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import pygame
 
 from code.Const import ENTITY_SPEED, ENTITY_SHOT_DELAY
@@ -23,4 +21,6 @@ class Enemy(Entity):
         self.shot_delay -= 1
         if self.shot_delay == 0:
             self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+            if player_position is None:
+                return None
             return EnemyShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery), player_pos=player_position)

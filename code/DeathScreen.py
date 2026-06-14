@@ -2,13 +2,14 @@ import pygame
 from pygame import Surface, Rect, KEYDOWN, K_ESCAPE, K_RETURN
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_ORANGE, C_WHITE
+from code.Const import WIN_WIDTH, C_ORANGE, C_WHITE, WIN_HEIGHT
 
 
 class DeathScreen:
     def __init__(self, window: Surface):
         self.window = window
         self.surf = pygame.image.load('./asset/ScoreBg.png').convert_alpha()
+        self.surf = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):

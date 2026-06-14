@@ -5,7 +5,7 @@ import pygame
 from pygame import Surface, Rect, KEYDOWN, K_RETURN, K_BACKSPACE, K_ESCAPE
 from pygame.font import Font
 
-from code.Const import C_YELLOW, SCORE_POS, MENU_OPTION, C_WHITE
+from code.Const import C_YELLOW, SCORE_POS, MENU_OPTION, C_WHITE, WIN_WIDTH, WIN_HEIGHT
 from code.DBProxy import DBProxy
 
 
@@ -13,6 +13,7 @@ class Score:
     def __init__(self, window: Surface):
         self.window = window
         self.surf = pygame.image.load('./asset/ScoreBg.png').convert_alpha()
+        self.surf = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
         self.rect = self.surf.get_rect(left=0, top=0)
         pass
 

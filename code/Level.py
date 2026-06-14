@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import random
 import sys
 
@@ -81,7 +79,7 @@ class Level:
                     sys.exit()
 
                 if event.type == EVENT_ENEMY:
-                    if self.dead_enemies >= 10 and self.boss_spawned == 0:
+                    if self.dead_enemies >= 19 and self.boss_spawned == 0:
                         self.entity_list.append(EntityFactory.get_entity('Enemy3'))
                         self.boss_spawned = 1
                     elif self.boss_spawned == 0:
@@ -102,6 +100,7 @@ class Level:
             self.level_text(14, f'fps: {clock.get_fps():.0f}', C_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
+
             # Collisions
             EntityMediator.verify_collision(entity_list=self.entity_list)
             self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
