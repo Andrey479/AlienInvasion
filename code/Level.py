@@ -5,8 +5,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN, C_CYAN, EVENT_TIMEOUT, \
-    TIMEOUT_STEP, TIMEOUT_LEVEL
+from code.Const import C_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, C_GREEN, TIMEOUT_LEVEL
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -28,13 +27,7 @@ class Level:
         self.dead_enemies = 0
         self.boss_spawned = 0
 
-        if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
-            player = EntityFactory.get_entity('Player2')
-            player.score = player_score[1]
-            self.entity_list.append(player)
-
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
-        pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # 100ms
 
     def run(self, player_score: list[int]):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -70,8 +63,6 @@ class Level:
 
                 if ent.name == 'Player1':
                     self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 25))
-                if ent.name == 'Player2':
-                    self.level_text(14, f'Player2 - Health: {ent.health} | Score: {ent.score}', C_CYAN, (10, 45))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -79,10 +70,7 @@ class Level:
                     sys.exit()
 
                 if event.type == EVENT_ENEMY:
-                    if self.dead_enemies >= 19 and self.boss_spawned == 0:
-                        self.entity_list.append(EntityFactory.get_entity('Enemy3'))
-                        self.boss_spawned = 1
-                    elif self.boss_spawned == 0:
+                    if self.boss_spawned == 0:
                         choice = random.choice(('Enemy1', 'Enemy2'))
                         self.entity_list.append(EntityFactory.get_entity(choice))
 
@@ -104,14 +92,15 @@ class Level:
             # Collisions
             EntityMediator.verify_collision(entity_list=self.entity_list)
             self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
+            if self.dead_enemies >= 20 and self.boss_spawned == 0:
+                self.entity_list.append(EntityFactory.get_entity('Enemy3'))
+                self.boss_spawned = 1
 
-            # condição de vitória: matar pelo menos 50 inimigos 
-            if self.dead_enemies >= 20:
+            # condição de vitória: matar pelo menos 20 inimigos
+            if self.dead_enemies >= 20 and self.boss_spawned == 1 and not any(e.name == 'Enemy3' for e in self.entity_list):
                 for ent in self.entity_list:
                     if isinstance(ent, Player) and ent.name == 'Player1':
                         player_score[0] = ent.score
-                    if isinstance(ent, Player) and ent.name == 'Player2':
-                        player_score[1] = ent.score
                 return True
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):

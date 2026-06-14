@@ -28,8 +28,6 @@ class EntityFactory:
                 player = Player('Player1', (10, 0))
                 player.rect.bottom = WIN_HEIGHT
                 return player
-            case 'Player2':
-                return Player('Player2', (10, WIN_HEIGHT / 2 + 30))
             case 'Enemy1':
                 return Enemy('Enemy1', (WIN_WIDTH + 10, random.randint(10, WIN_HEIGHT // 2)))
             case 'Enemy2':
