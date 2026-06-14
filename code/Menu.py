@@ -9,17 +9,27 @@ from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW, WIN_
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/MenuBg.png').convert_alpha()
-        self.surf = pygame.transform.scale(self.surf, (WIN_WIDTH, WIN_HEIGHT))
-        self.rect = self.surf.get_rect(left=0, top=0)
+        self.bg_layers = []
+        filenames = [
+            'layer-bg',
+            'layer-mountains-far',
+            'layer-mountains',
+            'layer-trees',
+            'layer-trees-front',
+        ]
+        for name in filenames:
+            surf = pygame.image.load(f'./asset/{name}.png').convert_alpha()
+            surf = pygame.transform.scale(surf, (WIN_WIDTH, WIN_HEIGHT))
+            self.bg_layers.append(surf)
 
     def run(self):
         menu_option = 0
-        pygame.mixer_music.load('./asset/Menu.mp3')
+        pygame.mixer_music.load('./asset/Level1.mp3')
         pygame.mixer_music.play(-1)
         while True:
             # DRAW IMAGES
-            self.window.blit(source=self.surf, dest=self.rect)
+            for layer in self.bg_layers:
+                self.window.blit(source=layer, dest=(0, 0))
             self.menu_text(50, "Alien", C_ORANGE, ((WIN_WIDTH / 2), 70))
             self.menu_text(50, "Invasion", C_ORANGE, ((WIN_WIDTH / 2), 120))
 
