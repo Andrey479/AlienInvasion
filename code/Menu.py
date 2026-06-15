@@ -39,7 +39,7 @@ class Menu:
                 color = C_YELLOW if i == menu_option else C_WHITE
                 self.menu_text(WIN_WIDTH // 53, MENU_OPTION[i], color, (WIN_WIDTH // 2, y))
 
-            self.menu_text(WIN_WIDTH // 64, 'Player 1 Controls', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 90), 'midright')
+            self.menu_text(WIN_WIDTH // 64, 'Player1 Controls', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 90), 'midright')
             self.menu_text(WIN_WIDTH // 64, 'A/D - Move', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 70), 'midright')
             self.menu_text(WIN_WIDTH // 64, 'W - Jump', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 55), 'midright')
             self.menu_text(WIN_WIDTH // 64, 'MOUSE CLICK - Shoot', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 40), 'midright')
