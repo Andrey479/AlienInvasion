@@ -9,6 +9,7 @@ from code.PlayerShot import PlayerShot
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
+        self.rect.inflate_ip(-40, 0)
         self.shot_delay = ENTITY_SHOT_DELAY[self.name]
         self.on_ground = True
         self.vertical_velocity = 0
@@ -25,7 +26,7 @@ class Player(Entity):
             self.rect.centery += self.vertical_velocity
 
         if pressed_key[PLAYER_KEY_JUMP] and self.on_ground:
-            self.vertical_velocity = -17
+            self.vertical_velocity = -20
             self.on_ground = False
 
         if self.rect.bottom >= WIN_HEIGHT and self.vertical_velocity >= 0:

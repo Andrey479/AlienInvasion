@@ -10,7 +10,7 @@ class EntityMediator:
 
     @staticmethod
     def __verify_collision_window(ent: Entity):
-        if isinstance(ent, Enemy) and ent.name != 'Enemy3':
+        if isinstance(ent, Enemy) and ent.name != 'Boss':
             if ent.rect.right <= 0:
                 ent.health = 0
         if isinstance(ent, (PlayerShot, EnemyShot)):
