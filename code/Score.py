@@ -21,7 +21,7 @@ class Score:
         self.rect = self.surf.get_rect(left=0, top=0)
         pass
 
-    def save(self, game_mode: str, player_score: list[int]):
+    def save(self, player_score: list[int]):
         pygame.mixer_music.load('./asset/Score.mp3')
         pygame.mixer_music.play(-1)
         db_proxy = DBProxy('DBScore')

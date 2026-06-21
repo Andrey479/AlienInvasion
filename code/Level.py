@@ -5,7 +5,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT, EVENT_ENEMY, SPAWN_TIME, C_GREEN, TIMEOUT_LEVEL, MENU_FONT
+from code.Const import C_WHITE, EVENT_ENEMY, SPAWN_TIME, C_GREEN, TIMEOUT_LEVEL, MENU_FONT
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -61,7 +61,7 @@ class Level:
                     ent.move()
 
                 if ent.name == 'Player1':
-                    self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 55))
+                    self.level_text(f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 55))
 
                 if self.dead_enemies >= 20 and self.boss_spawned == 1:
                     if isinstance(ent, Player) and ent.name == 'Player1':
@@ -78,8 +78,8 @@ class Level:
                         self.entity_list.append(EntityFactory.get_entity(choice))
 
 
-            self.level_text(14, f'{self.name}', C_WHITE, (10, 5))
-            self.level_text(14, f'Enemies killed: {self.dead_enemies}', C_WHITE, (10, 30))
+            self.level_text(f'{self.name}', C_WHITE, (10, 5))
+            self.level_text(f'Enemies killed: {self.dead_enemies}', C_WHITE, (10, 30))
             pygame.display.flip()
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
@@ -93,7 +93,7 @@ class Level:
             if not found_player:
                 return False
 
-    def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
+    def level_text(self, text: str, text_color: tuple, text_pos: tuple):
         text_surf: Surface = self.font14.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
