@@ -43,23 +43,34 @@ class EntityMediator:
     @staticmethod
     def __give_score(enemy: Enemy, entity_list: list[Entity]):
         if enemy.last_dmg == 'Player1Shot':
-            for ent in entity_list.copy():
+            copied_list = entity_list.copy()
+            for ent in copied_list:
                 if ent.name == 'Player1':
                     ent.score += enemy.score
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
-        for i in range(len(entity_list)):
-            entity1 = entity_list[i]
-            EntityMediator.__verify_collision_window(entity1)
-            for j in range(i + 1, len(entity_list)):
-                entity2 = entity_list[j]
-                EntityMediator.__verify_collision_entity(entity1, entity2)
+
+        # separado em subgrupos para evitar comparações desnecessárias
+        enemies = [ent for ent in entity_list if isinstance(ent, Enemy)]
+        enemies_shots = [ent for ent in entity_list if isinstance(ent, EnemyShot)]
+        players = [ent for ent in entity_list if isinstance(ent, Player)]
+        player_shots = [ent for ent in entity_list if isinstance(ent, PlayerShot)]
+
+        for entity in entity_list:
+            EntityMediator.__verify_collision_window(entity)
+        for enemy in enemies:
+            for shot in player_shots:
+                EntityMediator.__verify_collision_entity(enemy, shot)
+        for player in players:
+            for shot in enemies_shots:
+                EntityMediator.__verify_collision_entity(player, shot)
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
         dead_enemies = 0
-        for ent in entity_list:
+        copied_list = entity_list.copy()
+        for ent in copied_list:
             if ent.health <= 0:
                 if isinstance(ent, Enemy):
                     EntityMediator.__give_score(ent, entity_list)
