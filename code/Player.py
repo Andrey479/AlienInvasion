@@ -21,6 +21,11 @@ class Player(Entity):
         if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
 
+        if pressed_key[PLAYER_KEY_LEFT[self.name]]:
+            self.surf = pygame.transform.flip(self.original_surf, True, False)
+        elif pressed_key[PLAYER_KEY_RIGHT[self.name]]:
+            self.surf = self.original_surf
+
         if not self.on_ground:
             self.vertical_velocity += GRAVITY_VALUE
             self.rect.centery += self.vertical_velocity

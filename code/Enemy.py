@@ -17,6 +17,11 @@ class Enemy(Entity):
             else:
                 self.rect.centerx -= ENTITY_SPEED[self.name]
 
+            if self.rect.centerx <= player_position.centerx:
+                self.surf = pygame.transform.flip(self.original_surf, True, False)
+            else:
+                self.surf = self.original_surf
+
     def shoot(self, player_position: pygame.Rect = None):
         self.shot_delay -= 1
         if self.shot_delay == 0:
