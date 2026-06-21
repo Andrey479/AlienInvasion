@@ -20,6 +20,9 @@ class EnemyShot(Entity):
             self.dx = 0
             self.dy = 0
 
+        shot_sound = pygame.mixer.Sound(f"./asset/{self.name}.mp3")
+        shot_sound.play()
+
     def move(self):
         self.rect.centerx += self.dx
         self.rect.centery += self.dy

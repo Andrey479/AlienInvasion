@@ -1,5 +1,7 @@
 import math
 
+import pygame.mixer
+
 from code.Const import ENTITY_SPEED
 from code.Entity import Entity
 
@@ -17,6 +19,9 @@ class PlayerShot(Entity):
         else:
             self.dx = 0
             self.dy = 0
+
+        shot_sound = pygame.mixer.Sound("./asset/Player1Shot.mp3")
+        shot_sound.play()
 
     def move(self):
         self.rect.centerx += self.dx
