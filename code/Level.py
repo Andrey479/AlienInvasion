@@ -65,11 +65,6 @@ class Level:
                 if self.dead_enemies >= 20 and self.boss_spawned == 1:
                     if isinstance(ent, Player) and ent.name == 'Player1':
                         player_score[0] = ent.score
-                    return True
-
-            if not found_player:
-                return False
-
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -91,6 +86,11 @@ class Level:
             if self.dead_enemies >= 20 and self.boss_spawned == 0:
                 self.entity_list.append(EntityFactory.get_entity('Boss'))
                 self.boss_spawned = 1
+
+            if found_player and self.dead_enemies >= 21 and self.boss_spawned == 1:
+                return True
+            if not found_player:
+                return False
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.Font(MENU_FONT, text_size)
