@@ -38,30 +38,38 @@ class Level:
             clock.tick(60)
             player_pos = None
 
-            for ent in self.entity_list:
-                if isinstance(ent, Player):
-                    player_pos = ent.rect
-
-            for ent in self.entity_list:
+            copied_list = self.entity_list.copy()
+            found_player = False
+            for ent in copied_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
+
+                if isinstance(ent, Player):
+                    found_player = True
+                    player_pos = ent.rect
+                    shoot = ent.shoot()
+
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
 
                 if isinstance(ent, Enemy):
                     ent.move(player_pos)
-                else:
-                    ent.move()
-
-                if isinstance(ent, Enemy):
                     shoot = ent.shoot(player_pos)
                     if shoot is not None:
                         self.entity_list.append(shoot)
-                elif isinstance(ent, Player):
-                    shoot = ent.shoot()
-                    if shoot is not None:
-                        self.entity_list.append(shoot)
-
+                else:
+                    ent.move()
 
                 if ent.name == 'Player1':
                     self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 55))
+
+                if self.dead_enemies >= 20 and self.boss_spawned == 1:
+                    if isinstance(ent, Player) and ent.name == 'Player1':
+                        player_score[0] = ent.score
+                    return True
+
+            if not found_player:
+                return False
+
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -78,25 +86,11 @@ class Level:
             self.level_text(14, f'Enemies killed: {self.dead_enemies}', C_WHITE, (10, 30))
             pygame.display.flip()
 
-            found_player = False
-            for ent in self.entity_list:
-                if isinstance(ent, Player):
-                    found_player = True
-
-            if not found_player:
-                return False
-
             EntityMediator.verify_collision(entity_list=self.entity_list)
             self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
             if self.dead_enemies >= 20 and self.boss_spawned == 0:
                 self.entity_list.append(EntityFactory.get_entity('Boss'))
                 self.boss_spawned = 1
-
-            if self.dead_enemies >= 20 and self.boss_spawned == 1 and not any(e.name == 'Boss' for e in self.entity_list):
-                for ent in self.entity_list:
-                    if isinstance(ent, Player) and ent.name == 'Player1':
-                        player_score[0] = ent.score
-                return True
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.Font(MENU_FONT, text_size)
