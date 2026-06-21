@@ -26,6 +26,7 @@ class Level:
         self.entity_list.append(player)
         self.dead_enemies = 0
         self.boss_spawned = 0
+        self.font14: Font = pygame.font.Font(MENU_FONT, 14)
 
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
 
@@ -77,7 +78,7 @@ class Level:
                         self.entity_list.append(EntityFactory.get_entity(choice))
 
 
-            self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE, (10, 5))
+            self.level_text(14, f'{self.name}', C_WHITE, (10, 5))
             self.level_text(14, f'Enemies killed: {self.dead_enemies}', C_WHITE, (10, 30))
             pygame.display.flip()
 
@@ -93,7 +94,6 @@ class Level:
                 return False
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
-        text_font: Font = pygame.font.Font(MENU_FONT, text_size)
-        text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_surf: Surface = self.font14.render(text, True, text_color).convert_alpha()
         text_rect: Rect = text_surf.get_rect(left=text_pos[0], top=text_pos[1])
         self.window.blit(source=text_surf, dest=text_rect)
