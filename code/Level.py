@@ -5,7 +5,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, EVENT_ENEMY, SPAWN_TIME, C_GREEN, TIMEOUT_LEVEL, MENU_FONT
+from code.Const import C_WHITE, EVENT_ENEMY, SPAWN_TIME, C_GREEN, MENU_FONT
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -15,7 +15,6 @@ from code.Player import Player
 
 class Level:
     def __init__(self, window: Surface, name: str, game_mode: str, player_score: list[int]):
-        self.timeout = TIMEOUT_LEVEL
         self.window = window
         self.name = name
         self.game_mode = game_mode

@@ -31,7 +31,7 @@ class Player(Entity):
             self.rect.centery += self.vertical_velocity
 
         if pressed_key[PLAYER_KEY_JUMP] and self.on_ground:
-            self.vertical_velocity = -20
+            self.vertical_velocity = -25
             self.on_ground = False
 
         if self.rect.bottom >= WIN_HEIGHT and self.vertical_velocity >= 0:

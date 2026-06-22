@@ -14,13 +14,13 @@ ENTITY_SPEED = {
     'Level1Bg2': 2,
     'Level1Bg3': 3,
     'Player1': 3,
-    'Player1Shot': 7,
+    'Player1Shot': 8,
     'Enemy1': 1,
-    'Enemy1Shot': 2,
+    'Enemy1Shot': 3,
     'Enemy2': 1,
-    'Enemy2Shot': 2,
-    'Boss': 1,
-    'BossShot': 2,
+    'Enemy2Shot': 3,
+    'Boss': 2,
+    'BossShot': 6,
 }
 
 ENTITY_HEALTH = {
@@ -28,11 +28,11 @@ ENTITY_HEALTH = {
     'Level1Bg1': 999,
     'Level1Bg2': 999,
     'Level1Bg3': 999,
-    'Player1': 50,
+    'Player1': 100,
     'Player1Shot': 1,
-    'Enemy1': 100,
+    'Enemy1': 75,
     'Enemy1Shot': 1,
-    'Enemy2': 150,
+    'Enemy2': 125,
     'Enemy2Shot': 1,
     'Boss': 600,
     'BossShot': 1,
@@ -48,9 +48,9 @@ ENTITY_DAMAGE = {
     'Enemy1': 1,
     'Enemy1Shot': 5,
     'Enemy2': 1,
-    'Enemy2Shot': 5,
+    'Enemy2Shot': 10,
     'Boss': 1,
-    'BossShot': 5,
+    'BossShot': 15,
 }
 
 ENTITY_SCORE = {
@@ -69,10 +69,10 @@ ENTITY_SCORE = {
 }
 
 ENTITY_SHOT_DELAY = {
-    'Player1': 5,
-    'Enemy1': 200,
-    'Enemy2': 200,
-    'Boss': 200,
+    'Player1': 6,
+    'Enemy1': 120,
+    'Enemy2': 120,
+    'Boss': 120,
 }
 
 GRAVITY_VALUE = 1
@@ -89,10 +89,9 @@ PLAYER_KEY_SHOOT = {'Player1': 0}  # Left mouse button
 
 PLAYER_KEY_JUMP = pygame.K_w
 
-SPAWN_TIME = 4000
+SPAWN_TIME = 2000
 
 TIMEOUT_STEP = 100
-TIMEOUT_LEVEL = 20000
 WIN_WIDTH = 960
 WIN_HEIGHT = 540
 
