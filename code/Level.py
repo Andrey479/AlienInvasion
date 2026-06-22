@@ -80,7 +80,6 @@ class Level:
 
             self.level_text(f'{self.name}', C_WHITE, (10, 5))
             self.level_text(f'Enemies killed: {self.dead_enemies}', C_WHITE, (10, 30))
-            pygame.display.flip()
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
             self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
@@ -92,6 +91,8 @@ class Level:
                 return True
             if not found_player:
                 return False
+
+            pygame.display.flip()
 
     def level_text(self, text: str, text_color: tuple, text_pos: tuple):
         text_surf: Surface = self.font14.render(text, True, text_color).convert_alpha()

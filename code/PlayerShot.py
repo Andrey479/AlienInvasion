@@ -1,5 +1,3 @@
-import math
-
 import pygame.mixer
 
 from code.Const import ENTITY_SPEED
@@ -10,19 +8,15 @@ class PlayerShot(Entity):
 
     def __init__(self, name: str, position: tuple, mouse_pos: tuple):
         super().__init__(name, position)
-        dx = mouse_pos[0] - position[0]
-        dy = mouse_pos[1] - position[1]
-        hyp = math.hypot(dx, dy)
-        if hyp != 0:
-            self.dx = (dx / hyp) * ENTITY_SPEED[self.name]
-            self.dy = (dy / hyp) * ENTITY_SPEED[self.name]
-        else:
-            self.dx = 0
-            self.dy = 0
+        self.position = pygame.math.Vector2(position)
+        self.direction = pygame.math.Vector2(mouse_pos) - self.position
+
+        if self.direction.length() > 0:
+            self.direction.normalize_ip()
 
         shot_sound = pygame.mixer.Sound("./asset/Player1Shot.mp3")
         shot_sound.play()
 
     def move(self):
-        self.rect.centerx += self.dx
-        self.rect.centery += self.dy
+        self.position += self.direction * ENTITY_SPEED[self.name]
+        self.rect.center = (int(self.position.x), int(self.position.y))

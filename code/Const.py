@@ -19,7 +19,7 @@ ENTITY_SPEED = {
     'Enemy1Shot': 2,
     'Enemy2': 1,
     'Enemy2Shot': 2,
-    'Boss': 2,
+    'Boss': 1,
     'BossShot': 2,
 }
 
@@ -49,7 +49,7 @@ ENTITY_DAMAGE = {
     'Enemy1Shot': 5,
     'Enemy2': 1,
     'Enemy2Shot': 5,
-    'Boss': 3,
+    'Boss': 1,
     'BossShot': 5,
 }
 
@@ -72,7 +72,7 @@ ENTITY_SHOT_DELAY = {
     'Player1': 5,
     'Enemy1': 200,
     'Enemy2': 200,
-    'Boss': 60,
+    'Boss': 200,
 }
 
 GRAVITY_VALUE = 1
@@ -89,7 +89,7 @@ PLAYER_KEY_SHOOT = {'Player1': 0}  # Left mouse button
 
 PLAYER_KEY_JUMP = pygame.K_w
 
-SPAWN_TIME = 4*1000
+SPAWN_TIME = 4000
 
 TIMEOUT_STEP = 100
 TIMEOUT_LEVEL = 20000
