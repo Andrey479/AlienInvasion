@@ -26,7 +26,7 @@ class Level:
         self.dead_enemies = 0
         self.boss_spawned = 0
         self.font14: Font = pygame.font.Font(MENU_FONT, 14)
-
+        self.is_the_boss_dead = False
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
 
     def run(self, player_score: list[int]):
@@ -81,12 +81,16 @@ class Level:
             self.level_text(f'Enemies killed: {self.dead_enemies}', C_WHITE, (10, 30))
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
-            self.dead_enemies += EntityMediator.verify_health(entity_list=self.entity_list)
+            number_of_enemies_killed, boss_dead = EntityMediator.verify_health(entity_list=self.entity_list)
+            
+            if boss_dead: self.is_the_boss_dead = True
+
+            self.dead_enemies += number_of_enemies_killed
             if self.dead_enemies >= 20 and self.boss_spawned == 0:
                 self.entity_list.append(EntityFactory.get_entity('Boss'))
                 self.boss_spawned = 1
 
-            if found_player and self.dead_enemies >= 21 and self.boss_spawned == 1:
+            if found_player and self.dead_enemies >= 21 and self.boss_spawned == 1 and self.is_the_boss_dead:
                 return True
             if not found_player:
                 return False

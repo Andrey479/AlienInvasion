@@ -68,6 +68,7 @@ class EntityMediator:
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
+        is_the_boss_dead = False
         dead_enemies = 0
         copied_list = entity_list.copy()
         for ent in copied_list:
@@ -75,5 +76,7 @@ class EntityMediator:
                 if isinstance(ent, Enemy):
                     EntityMediator.__give_score(ent, entity_list)
                     dead_enemies += 1
+                if ent.name == "Boss":
+                    is_the_boss_dead = True
                 entity_list.remove(ent)
-        return dead_enemies
+        return dead_enemies, is_the_boss_dead
