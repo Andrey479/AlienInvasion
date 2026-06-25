@@ -24,12 +24,15 @@ class EntityFactory:
                 player.rect.bottom = WIN_HEIGHT
                 return player
             case 'Enemy1':
-                return Enemy('Enemy1', (WIN_WIDTH + ENEMY_SPAWN_OFFSET, random.randint(ENEMY_SPAWN_MIN_Y, WIN_HEIGHT // 2)))
+                x = -ENEMY_SPAWN_OFFSET if random.choice((True, False)) else WIN_WIDTH + ENEMY_SPAWN_OFFSET
+                return Enemy('Enemy1', (x, random.randint(ENEMY_SPAWN_MIN_Y, WIN_HEIGHT // 2)))
             case 'Enemy2':
-                enemy = Enemy('Enemy2', (WIN_WIDTH + ENEMY_SPAWN_OFFSET, 0))
+                x = -ENEMY_SPAWN_OFFSET if random.choice((True, False)) else WIN_WIDTH + ENEMY_SPAWN_OFFSET
+                enemy = Enemy('Enemy2', (x, 0))
                 enemy.rect.bottom = WIN_HEIGHT
                 return enemy
             case 'Boss':
-                return Enemy('Boss', (WIN_WIDTH + ENEMY_SPAWN_OFFSET, random.randint(ENEMY_SPAWN_MIN_Y, WIN_HEIGHT // 2)))
+                x = -ENEMY_SPAWN_OFFSET if random.choice((True, False)) else WIN_WIDTH + ENEMY_SPAWN_OFFSET
+                return Enemy('Boss', (x, random.randint(ENEMY_SPAWN_MIN_Y, WIN_HEIGHT // 2)))
         return None
             

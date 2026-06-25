@@ -9,19 +9,23 @@ C_BLACK = (0, 0, 0)
 
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
+
+WIN_WIDTH = 960
+WIN_HEIGHT = 540
+
 ENTITY_SPEED = {
     'Level1Bg0': 0,
     'Level1Bg1': 1,
     'Level1Bg2': 2,
     'Level1Bg3': 3,
     'Player1': 3,
-    'Player1Shot': 8,
+    'Player1Shot': 12,
     'Enemy1': 1,
     'Enemy1Shot': 5,
     'Enemy2': 1,
     'Enemy2Shot': 5,
     'Boss': 1,
-    'BossShot': 6,
+    'BossShot': 8,
 }
 
 ENTITY_HEALTH = {
@@ -35,7 +39,7 @@ ENTITY_HEALTH = {
     'Enemy1Shot': 1,
     'Enemy2': 100,
     'Enemy2Shot': 1,
-    'Boss': 1000,
+    'Boss': 2000,
     'BossShot': 1,
 }
 
@@ -83,7 +87,7 @@ PLAYER_HITBOX_INSET = -40
 
 FPS = 60
 MUSIC_VOLUME = 0.3
-ENEMIES_TO_SPAWN_BOSS = 20
+ENEMIES_TO_SPAWN_BOSS = 50
 ENEMIES_TO_WIN = ENEMIES_TO_SPAWN_BOSS + 1
 BOSS_NOT_SPAWNED = 0
 BOSS_SPAWNED = 1
@@ -91,7 +95,7 @@ BOSS_SPAWNED = 1
 BG_LAYER_COUNT = 4
 ENEMY_SPAWN_OFFSET = 10
 ENEMY_SPAWN_MIN_Y = 10
-PLAYER_START_X = 10
+PLAYER_START_X = WIN_WIDTH // 2
 
 MENU_FONT = './asset/PressStart2P-Regular.ttf'
 
@@ -108,14 +112,13 @@ PLAYER_KEY_JUMP = pygame.K_w
 SPAWN_TIME = 2000
 
 TIMEOUT_STEP = 100
-WIN_WIDTH = 960
-WIN_HEIGHT = 540
+
 
 HUD_FONT_SIZE = 14
-HUD_LEVEL_POS = (10, 5)
-HUD_KILLS_POS = (10, 30)
-HUD_PLAYER_POS = (10, 55)
-
+HUD_LEVEL_POS = (10, int(WIN_HEIGHT * 0.01))
+HUD_CHALLENGE_POS = (10, int(WIN_HEIGHT * 0.05))
+HUD_ENEMIES_POS = (10, int(WIN_HEIGHT * 0.09))
+HUD_PLAYER_POS = (10, int(WIN_HEIGHT * 0.13))
 SCORE_TITLE_FONT_SIZE = 48
 SCORE_BODY_FONT_SIZE = 20
 PLAYER_NAME_LENGTH = 4

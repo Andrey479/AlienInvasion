@@ -8,7 +8,7 @@ from pygame.font import Font
 from code.Const import C_WHITE, EVENT_ENEMY, SPAWN_TIME, C_GREEN, MENU_FONT, \
     FPS, MUSIC_VOLUME, ENEMIES_TO_SPAWN_BOSS, ENEMIES_TO_WIN, \
     BOSS_NOT_SPAWNED, BOSS_SPAWNED, HUD_FONT_SIZE, \
-    HUD_LEVEL_POS, HUD_KILLS_POS, HUD_PLAYER_POS
+    HUD_LEVEL_POS, HUD_CHALLENGE_POS, HUD_ENEMIES_POS, HUD_PLAYER_POS
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -63,7 +63,7 @@ class Level:
                     ent.move()
 
                 if ent.name == 'Player1':
-                    self.level_text(f'Player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, HUD_PLAYER_POS)
+                    self.level_text(f'Player1 - vida: {ent.health} | Score: {ent.score}', C_WHITE, HUD_PLAYER_POS)
 
                 if self.dead_enemies >= ENEMIES_TO_SPAWN_BOSS and self.boss_spawned == BOSS_SPAWNED:
                     if isinstance(ent, Player) and ent.name == 'Player1':
@@ -81,7 +81,8 @@ class Level:
 
 
             self.level_text(f'{self.name}', C_WHITE, HUD_LEVEL_POS)
-            self.level_text(f'Enemies killed: {self.dead_enemies}', C_WHITE, HUD_KILLS_POS)
+            self.level_text("Desafio: Elimine o Chefe dos Aliens", C_WHITE, HUD_CHALLENGE_POS)
+            self.level_text(f'Inimigos restantes: {1 + ENEMIES_TO_SPAWN_BOSS - self.dead_enemies}', C_WHITE, HUD_ENEMIES_POS)
 
             EntityMediator.verify_collision(entity_list=self.entity_list)
             number_of_enemies_killed, boss_dead = EntityMediator.verify_health(entity_list=self.entity_list)
