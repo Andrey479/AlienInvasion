@@ -20,15 +20,15 @@ ENTITY_SPEED = {
     'Enemy1Shot': 5,
     'Enemy2': 1,
     'Enemy2Shot': 5,
-    'Boss': 2,
+    'Boss': 1,
     'BossShot': 6,
 }
 
 ENTITY_HEALTH = {
-    'Level1Bg0': 999,
-    'Level1Bg1': 999,
-    'Level1Bg2': 999,
-    'Level1Bg3': 999,
+    'Level1Bg0': 1,
+    'Level1Bg1': 1,
+    'Level1Bg2': 1,
+    'Level1Bg3': 1,
     'Player1': 100,
     'Player1Shot': 1,
     'Enemy1': 125,
@@ -78,7 +78,7 @@ ENTITY_SHOT_DELAY = {
 
 GRAVITY_VALUE = 1
 
-PLAYER_JUMP_FORCE = -25
+PLAYER_JUMP_FORCE = -23
 PLAYER_HITBOX_INSET = -40
 
 FPS = 60
