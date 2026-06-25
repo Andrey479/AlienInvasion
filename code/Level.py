@@ -46,6 +46,9 @@ class Level:
             for ent in copied_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
 
+                if isinstance(ent, (Player, Enemy)):
+                    ent.draw_health_bar(self.window)
+
                 if isinstance(ent, Player):
                     found_player = True
                     player_pos = ent.rect
