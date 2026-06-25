@@ -16,9 +16,9 @@ ENTITY_SPEED = {
     'Player1': 3,
     'Player1Shot': 8,
     'Enemy1': 1,
-    'Enemy1Shot': 3,
+    'Enemy1Shot': 5,
     'Enemy2': 1,
-    'Enemy2Shot': 3,
+    'Enemy2Shot': 5,
     'Boss': 2,
     'BossShot': 6,
 }
@@ -30,11 +30,11 @@ ENTITY_HEALTH = {
     'Level1Bg3': 999,
     'Player1': 100,
     'Player1Shot': 1,
-    'Enemy1': 75,
+    'Enemy1': 125,
     'Enemy1Shot': 1,
-    'Enemy2': 125,
+    'Enemy2': 100,
     'Enemy2Shot': 1,
-    'Boss': 600,
+    'Boss': 1000,
     'BossShot': 1,
 }
 
@@ -46,9 +46,9 @@ ENTITY_DAMAGE = {
     'Player1': 1,
     'Player1Shot': 25,
     'Enemy1': 1,
-    'Enemy1Shot': 5,
+    'Enemy1Shot': 10,
     'Enemy2': 1,
-    'Enemy2Shot': 10,
+    'Enemy2Shot': 5,
     'Boss': 1,
     'BossShot': 15,
 }
@@ -70,9 +70,9 @@ ENTITY_SCORE = {
 
 ENTITY_SHOT_DELAY = {
     'Player1': 6,
-    'Enemy1': 120,
-    'Enemy2': 120,
-    'Boss': 120,
+    'Enemy1': 100,
+    'Enemy2': 100,
+    'Boss': 60,
 }
 
 GRAVITY_VALUE = 1
