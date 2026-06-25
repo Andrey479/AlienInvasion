@@ -66,7 +66,7 @@ class Level:
                     ent.move()
 
                 if ent.name == 'Player1':
-                    self.level_text(f'Player1 - vida: {ent.health} | Score: {ent.score}', C_WHITE, HUD_PLAYER_POS)
+                    self.level_text(f'Player1 | Score: {ent.score}', C_WHITE, HUD_PLAYER_POS)
 
                 if self.dead_enemies >= ENEMIES_TO_SPAWN_BOSS and self.boss_spawned == BOSS_SPAWNED:
                     if isinstance(ent, Player) and ent.name == 'Player1':
