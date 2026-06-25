@@ -5,7 +5,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, EVENT_ENEMY, SPAWN_TIME, C_GREEN, MENU_FONT, \
+from code.Const import C_WHITE, EVENT_ENEMY, SPAWN_TIME, MENU_FONT, \
     FPS, MUSIC_VOLUME, ENEMIES_TO_SPAWN_BOSS, ENEMIES_TO_WIN, \
     BOSS_NOT_SPAWNED, BOSS_SPAWNED, HUD_FONT_SIZE, \
     HUD_LEVEL_POS, HUD_CHALLENGE_POS, HUD_ENEMIES_POS, HUD_PLAYER_POS

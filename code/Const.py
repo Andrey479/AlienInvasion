@@ -35,11 +35,11 @@ ENTITY_HEALTH = {
     'Level1Bg3': 1,
     'Player1': 100,
     'Player1Shot': 1,
-    'Enemy1': 125,
+    'Enemy1': 100,
     'Enemy1Shot': 1,
     'Enemy2': 100,
     'Enemy2Shot': 1,
-    'Boss': 2000,
+    'Boss': 3000,
     'BossShot': 1,
 }
 
@@ -86,7 +86,7 @@ PLAYER_JUMP_FORCE = -23
 PLAYER_HITBOX_INSET = -40
 
 FPS = 60
-MUSIC_VOLUME = 0.3
+MUSIC_VOLUME = 0.7
 ENEMIES_TO_SPAWN_BOSS = 50
 ENEMIES_TO_WIN = ENEMIES_TO_SPAWN_BOSS + 1
 BOSS_NOT_SPAWNED = 0
@@ -99,17 +99,17 @@ PLAYER_START_X = WIN_WIDTH // 2
 
 MENU_FONT = './asset/PressStart2P-Regular.ttf'
 
-MENU_OPTION = ('NEW GAME 1P',
+MENU_OPTION = ('NEW GAME',
                'SCORE',
                'EXIT')
 
 PLAYER_KEY_LEFT = {'Player1': pygame.K_a}
 PLAYER_KEY_RIGHT = {'Player1': pygame.K_d}
-PLAYER_KEY_SHOOT = {'Player1': 0}  # Left mouse button
+PLAYER_KEY_SHOOT = {'Player1': 0}
 
 PLAYER_KEY_JUMP = pygame.K_w
 
-SPAWN_TIME = 2000
+SPAWN_TIME = 1500
 
 TIMEOUT_STEP = 100
 

@@ -1,5 +1,3 @@
-import math
-
 import pygame
 
 from code.Const import ENTITY_SPEED
