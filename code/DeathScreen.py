@@ -2,7 +2,8 @@ import pygame
 from pygame import Surface, Rect, KEYDOWN, K_ESCAPE, K_RETURN
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_ORANGE, C_WHITE, WIN_HEIGHT, MENU_FONT
+from code.Const import WIN_WIDTH, C_ORANGE, C_WHITE, WIN_HEIGHT, MENU_FONT, \
+    DEATH_TITLE_FONT_SIZE, DEATH_BODY_FONT_SIZE, DEATH_TITLE_Y, DEATH_INSTR_Y
 
 
 class DeathScreen:
@@ -17,8 +18,8 @@ class DeathScreen:
         pygame.mixer_music.play(-1)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.death_text(50, 'YOU DIED', C_ORANGE, ((WIN_WIDTH / 2), 100))
-            self.death_text(20, 'Press ESC to return to menu', C_WHITE, ((WIN_WIDTH / 2), 200))
+            self.death_text(DEATH_TITLE_FONT_SIZE, 'YOU DIED', C_ORANGE, ((WIN_WIDTH / 2), DEATH_TITLE_Y))
+            self.death_text(DEATH_BODY_FONT_SIZE, 'Press ESC to return to menu', C_WHITE, ((WIN_WIDTH / 2), DEATH_INSTR_Y))
             pygame.display.flip()
 
             for event in pygame.event.get():

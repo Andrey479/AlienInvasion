@@ -3,7 +3,11 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW, WIN_HEIGHT, MENU_FONT
+from code.Const import WIN_WIDTH, C_ORANGE, MENU_OPTION, C_WHITE, C_YELLOW, WIN_HEIGHT, \
+    MENU_FONT, C_BLACK, TITLE_FONT_DIVISOR, MENU_FONT_DIVISOR, CONTROLS_FONT_DIVISOR, \
+    TITLE_Y_RATIO, OPTIONS_START_Y_RATIO, OPTIONS_SPACING_RATIO, TITLE_SHADOW_OFFSET, \
+    CONTROLS_RIGHT_MARGIN, CONTROLS_TITLE_BOTTOM, CONTROLS_MOVE_BOTTOM, CONTROLS_JUMP_BOTTOM, \
+    CONTROLS_SHOOT_BOTTOM, CONTROLS_AIM_BOTTOM
 
 
 class Menu:
@@ -29,21 +33,21 @@ class Menu:
         while True:
             for layer in self.bg_layers:
                 self.window.blit(source=layer, dest=(0, 0))
-            self.menu_text(WIN_WIDTH // 19, "Alien Invasion", (0, 0, 0), (WIN_WIDTH // 2, int(WIN_HEIGHT * 0.18) + 3))
-            self.menu_text(WIN_WIDTH // 19, "Alien Invasion", C_ORANGE, (WIN_WIDTH // 2, int(WIN_HEIGHT * 0.18)))
+            self.menu_text(WIN_WIDTH // TITLE_FONT_DIVISOR, "Alien Invasion", C_BLACK, (WIN_WIDTH // 2, int(WIN_HEIGHT * TITLE_Y_RATIO) + TITLE_SHADOW_OFFSET))
+            self.menu_text(WIN_WIDTH // TITLE_FONT_DIVISOR, "Alien Invasion", C_ORANGE, (WIN_WIDTH // 2, int(WIN_HEIGHT * TITLE_Y_RATIO)))
 
-            option_y_start = WIN_HEIGHT * 0.45
-            option_spacing = WIN_HEIGHT * 0.06
+            option_y_start = WIN_HEIGHT * OPTIONS_START_Y_RATIO
+            option_spacing = WIN_HEIGHT * OPTIONS_SPACING_RATIO
             for i in range(len(MENU_OPTION)):
                 y = option_y_start + option_spacing * i
                 color = C_YELLOW if i == menu_option else C_WHITE
-                self.menu_text(WIN_WIDTH // 53, MENU_OPTION[i], color, (WIN_WIDTH // 2, y))
+                self.menu_text(WIN_WIDTH // MENU_FONT_DIVISOR, MENU_OPTION[i], color, (WIN_WIDTH // 2, y))
 
-            self.menu_text(WIN_WIDTH // 64, 'Player1 Controls', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 90), 'midright')
-            self.menu_text(WIN_WIDTH // 64, 'A/D - Move', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 70), 'midright')
-            self.menu_text(WIN_WIDTH // 64, 'W - Jump', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 55), 'midright')
-            self.menu_text(WIN_WIDTH // 64, 'MOUSE CLICK - Shoot', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 40), 'midright')
-            self.menu_text(WIN_WIDTH // 64, 'MOUSE MOVE - Aim', C_WHITE, (WIN_WIDTH - 20, WIN_HEIGHT - 25), 'midright')
+            self.menu_text(WIN_WIDTH // CONTROLS_FONT_DIVISOR, 'Player1 Controls', C_WHITE, (WIN_WIDTH - CONTROLS_RIGHT_MARGIN, WIN_HEIGHT - CONTROLS_TITLE_BOTTOM), 'midright')
+            self.menu_text(WIN_WIDTH // CONTROLS_FONT_DIVISOR, 'A/D - Move', C_WHITE, (WIN_WIDTH - CONTROLS_RIGHT_MARGIN, WIN_HEIGHT - CONTROLS_MOVE_BOTTOM), 'midright')
+            self.menu_text(WIN_WIDTH // CONTROLS_FONT_DIVISOR, 'W - Jump', C_WHITE, (WIN_WIDTH - CONTROLS_RIGHT_MARGIN, WIN_HEIGHT - CONTROLS_JUMP_BOTTOM), 'midright')
+            self.menu_text(WIN_WIDTH // CONTROLS_FONT_DIVISOR, 'MOUSE CLICK - Shoot', C_WHITE, (WIN_WIDTH - CONTROLS_RIGHT_MARGIN, WIN_HEIGHT - CONTROLS_SHOOT_BOTTOM), 'midright')
+            self.menu_text(WIN_WIDTH // CONTROLS_FONT_DIVISOR, 'MOUSE MOVE - Aim', C_WHITE, (WIN_WIDTH - CONTROLS_RIGHT_MARGIN, WIN_HEIGHT - CONTROLS_AIM_BOTTOM), 'midright')
             pygame.display.flip()
 
             for event in pygame.event.get():

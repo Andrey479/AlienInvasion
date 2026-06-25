@@ -1,7 +1,8 @@
 import pygame.key
 
 from code.Const import ENTITY_SPEED, WIN_HEIGHT, WIN_WIDTH, PLAYER_KEY_LEFT, \
-    PLAYER_KEY_RIGHT, PLAYER_KEY_JUMP, ENTITY_SHOT_DELAY, GRAVITY_VALUE
+    PLAYER_KEY_RIGHT, PLAYER_KEY_JUMP, ENTITY_SHOT_DELAY, GRAVITY_VALUE, \
+    PLAYER_JUMP_FORCE, PLAYER_HITBOX_INSET
 from code.Entity import Entity
 from code.PlayerShot import PlayerShot
 
@@ -9,7 +10,7 @@ from code.PlayerShot import PlayerShot
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
-        self.rect.inflate_ip(-40, 0)
+        self.rect.inflate_ip(PLAYER_HITBOX_INSET, 0)
         self.shot_delay = ENTITY_SHOT_DELAY[self.name]
         self.on_ground = True
         self.vertical_velocity = 0
@@ -31,7 +32,7 @@ class Player(Entity):
             self.rect.centery += self.vertical_velocity
 
         if pressed_key[PLAYER_KEY_JUMP] and self.on_ground:
-            self.vertical_velocity = -25
+            self.vertical_velocity = PLAYER_JUMP_FORCE
             self.on_ground = False
 
         if self.rect.bottom >= WIN_HEIGHT and self.vertical_velocity >= 0:
